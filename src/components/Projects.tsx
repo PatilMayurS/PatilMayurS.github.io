@@ -35,10 +35,12 @@ function Featured({ project, wide = false, delay = 0 }: { project: Project; wide
             <dt className="text-label text-fog">Use case</dt>
             <dd className="mt-1.5 text-snow/90 text-pretty">{project.useCase}</dd>
           </div>
+          {/* "My contribution" hidden for now — to be written by Mayur. Uncomment to show it again.
           <div>
             <dt className="text-label text-fog">My contribution</dt>
             <dd className="mt-1.5 text-snow/90 text-pretty">{project.contribution}</dd>
           </div>
+          */}
           <div>
             <dt className="text-label text-fog">Outcomes</dt>
             <dd className="mt-2">
@@ -82,10 +84,12 @@ function Compact({ project, delay = 0 }: { project: Project; delay?: number }) {
             <dt className="text-label text-fog">Use case</dt>
             <dd className="mt-1 text-snow/85">{project.useCase}</dd>
           </div>
+          {/* "My contribution" hidden for now — to be written by Mayur. Uncomment to show it again.
           <div>
             <dt className="text-label text-fog">My contribution</dt>
             <dd className="mt-1 text-snow/85">{project.contribution}</dd>
           </div>
+          */}
           {project.outcomes.length > 0 && (
             <div>
               <dt className="text-label text-fog">Outcome</dt>

@@ -38,9 +38,12 @@ const HULL = 'M0 -24 C10 -14 12 4 10 22 L-10 22 C-12 4 -10 -14 0 -24 Z'
 
 /* ---------- Digital twin: a simulated sea surface, sensors, weather, traffic ---------- */
 function Twin() {
-  const vp = { x: 330, y: 132 }
-  const rays = Array.from({ length: 29 }, (_, i) => -1120 + i * 80)
-  const rows = Array.from({ length: 9 }, (_, i) => vp.y + 8 + Math.pow(i + 1, 2) * 3.4)
+  // Sea surface seen from high above (matching the top-down vessel): the vanishing
+  // point sits far above the frame and rows follow true perspective (y = horizon + f/z).
+  const vp = { x: 330, y: -700 }
+  const f = H - vp.y
+  const rows = Array.from({ length: 11 }, (_, i) => vp.y + f / (1 + i * 0.06))
+  const rays = Array.from({ length: 21 }, (_, i) => -310 + i * 64)
   const route = openSpline([
     { x: 300, y: 300 },
     { x: 318, y: 250 },
@@ -52,22 +55,21 @@ function Twin() {
     <Frame id="twin">
       <defs>
         <linearGradient id="twin-fade" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fff" stopOpacity="0" />
+          <stop offset="0" stopColor="#fff" stopOpacity="0.15" />
           <stop offset="1" stopColor="#fff" stopOpacity="1" />
         </linearGradient>
         <mask id="twin-mask">
-          <rect x="0" y={vp.y} width={W} height={H - vp.y} fill="url(#twin-fade)" />
+          <rect x="0" y="0" width={W} height={H} fill="url(#twin-fade)" />
         </mask>
       </defs>
       <g mask="url(#twin-mask)" stroke="#fff" strokeOpacity="0.22" strokeWidth="1">
         {rays.map((x) => (
-          <line key={x} x1={vp.x} y1={vp.y} x2={vp.x + (x - vp.x) * 1.6} y2={H + 40} />
+          <line key={x} x1={vp.x} y1={vp.y} x2={x} y2={H} />
         ))}
         {rows.map((y) => (
           <line key={y} x1="0" y1={y} x2={W} y2={y} />
         ))}
       </g>
-      <line x1="0" y1={vp.y} x2={W} y2={vp.y} stroke="#fff" strokeOpacity="0.16" />
       {/* weather */}
       <g stroke="#fff" strokeOpacity="0.14" strokeLinecap="round">
         {Array.from({ length: 26 }, (_, i) => {
