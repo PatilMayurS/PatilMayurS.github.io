@@ -666,16 +666,31 @@
   .journey-line {
     position: relative;
     height: 2px;
-    border-radius: 2px;
-    background: var(--color-line);
   }
-  .journey-fill {
+  .journey-seg {
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
+    top: 0;
+    height: 2px;
+    border-radius: 2px;
     transform-origin: left;
+    transition: transform 0.9s var(--ease-soft) calc(var(--d, 0ms) + 250ms);
+  }
+  .journey-seg.is-study {
     background: linear-gradient(90deg, var(--color-teal), var(--color-indigo));
-    transition: transform 1.8s var(--ease-soft) 0.25s;
+  }
+  .journey-seg.is-work {
+    background: repeating-linear-gradient(90deg, var(--color-muted) 0 5px, transparent 5px 10px);
+    opacity: 0.7;
+  }
+  .journey-gap-label {
+    position: absolute;
+    bottom: 0.75rem;
+    translate: -50% 0;
+    white-space: nowrap;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    transition: opacity 0.6s ease 0.9s;
   }
   .journey-stop {
     position: absolute;
@@ -720,8 +735,11 @@
     font-weight: 600;
     letter-spacing: -0.02em;
   }
-  .js .journey:not(.is-in) .journey-fill {
+  .js .journey:not(.is-in) .journey-seg {
     transform: scaleX(0);
+  }
+  .js .journey:not(.is-in) .journey-gap-label {
+    opacity: 0;
   }
   .js .journey:not(.is-in) .journey-stop {
     opacity: 0;

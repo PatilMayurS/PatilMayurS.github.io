@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { education, type Degree } from '../content/profile'
+import { education, educationGap, type Degree } from '../content/profile'
 import { cx } from '../lib/cx'
 import { Container, Reveal, Section, SectionHeader } from './ui'
 
@@ -7,10 +7,30 @@ function Journey() {
   const chronological = [...education].reverse()
   const first = Number(chronological[0].year)
   const span = Number(chronological[chronological.length - 1].year) - first
+  const pct = (year: number) => ((year - first) / span) * 100
+  // Study segments either side of the industry years; the gap itself is dashed and labelled.
+  const segments = [
+    { from: first, to: educationGap.from, kind: 'study' },
+    { from: educationGap.from, to: educationGap.to, kind: 'work' },
+    { from: educationGap.to, to: first + span, kind: 'study' },
+  ]
   return (
     <Reveal className="journey mt-16 sm:mt-20" aria-hidden="true">
       <div className="journey-line">
-        <span className="journey-fill" />
+        {segments.map((seg) => (
+          <span
+            key={seg.from}
+            className={cx('journey-seg', seg.kind === 'work' ? 'is-work' : 'is-study')}
+            style={{ left: `${pct(seg.from)}%`, width: `${pct(seg.to) - pct(seg.from)}%`, '--d': `${pct(seg.from) * 14}ms` } as CSSProperties}
+          />
+        ))}
+        <span
+          className="journey-gap-label"
+          style={{ left: `${(pct(educationGap.from) + pct(educationGap.to)) / 2}%` }}
+        >
+          <span className="hidden sm:inline">{educationGap.label}</span>
+          <span className="sm:hidden">{educationGap.short}</span>
+        </span>
       </div>
       <ol className="relative h-14">
         {chronological.map((d, i) => {
@@ -19,10 +39,10 @@ function Journey() {
             <li
               key={d.year}
               className={cx('journey-stop', last && 'is-last')}
-              style={{ '--x': `${((Number(d.year) - first) / span) * 100}%`, '--i': i } as CSSProperties}
+              style={{ '--x': `${pct(Number(d.year))}%`, '--i': i } as CSSProperties}
             >
               <span className="journey-year">{d.year}</span>
-              <span className="journey-label">{d.short}</span>
+              <span className="journey-label">{d.expected ? `${d.short} (expected)` : d.short}</span>
             </li>
           )
         })}

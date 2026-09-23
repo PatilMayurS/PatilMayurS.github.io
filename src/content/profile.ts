@@ -400,6 +400,9 @@ export const education: Degree[] = [
   },
 ]
 
+/** Shown on the education timeline so the Ph.D. isn't read as starting in 2020 (dates from the Controls Engineer role). */
+export const educationGap = { from: 2020, to: 2023, label: 'Industry · Controls Engineer', short: 'Industry' }
+
 export const honors: Honor[] = [
   { title: '2nd Place, SAE AutoDrive Challenge II', detail: 'Representing Texas A&M University', date: 'Jun 2025' },
   { title: 'Invited Technical Reviewer', detail: 'IFAC World Congress 2025 and MECC 2021', date: 'May 2025' },
