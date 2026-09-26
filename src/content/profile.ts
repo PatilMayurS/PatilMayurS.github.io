@@ -77,7 +77,7 @@ export type Honor = { title: string; detail: string; date: string }
 export const hero = {
   eyebrow: ['Ph.D. Candidate', 'Mechanical Engineering', 'Texas A&M University'],
   taglineAccent: 'Engineering safe navigation',
-  taglineRest: 'for autonomous systems — at sea, in the air, and on the ground.',
+  taglineRest: 'for autonomous systems - at sea, on the ground, and in the air.',
   intro:
     'I’m a Ph.D. candidate at Texas A&M University. I build high-fidelity digital twins to verify and validate autonomous marine navigation, and design curvature-constrained motion planning for marine and aerial vehicles.',
 }
@@ -86,7 +86,7 @@ export const about = {
   statement:
     'I study how autonomous systems perceive, plan, and decide — and how to verify that they do it safely.',
   paragraphs: [
-    'At Texas A&M’s Autonomous Systems Laboratory, I research autonomous marine, aerial, and ground systems, with a focus on perception, sensor fusion, localization, planning, and decision-making.',
+    'At Texas A&M’s Autonomous Systems Laboratory, I research autonomous marine, aerial, and ground systems, with a focus on perception, planning, and decision-making.',
     'Much of my work focuses on maritime autonomy. I build large-scale, high-fidelity digital twins to verify and validate autonomous navigation, apply System-Theoretic Process Analysis to transitions between manual and autonomous operation, and design curvature-constrained planners for marine and aerial vehicles.',
     'Before my doctorate, I spent 2020–2023 as a Controls Engineer on life-safety system automation for Intel semiconductor fabrication facilities in New Mexico and Arizona. Earlier, at Iowa State University, I combined machine learning with model predictive control for nano-precision motion.',
   ],
