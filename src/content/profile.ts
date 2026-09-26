@@ -84,7 +84,7 @@ export const hero = {
 
 export const about = {
   statement:
-    'I study how autonomous systems perceive, plan, and decide — and how to verify that they do it safely.',
+    'I study how autonomous systems perceive, plan, and decide - and how to verify that they do it safely.',
   paragraphs: [
     'At Texas A&M’s Autonomous Systems Laboratory, I research autonomous marine, aerial, and ground systems, with a focus on perception, planning, and decision-making.',
     'Much of my work focuses on maritime autonomy. I build large-scale, high-fidelity digital twins to verify and validate autonomous navigation, apply System-Theoretic Process Analysis to transitions between manual and autonomous operation, and design curvature-constrained planners for marine and aerial vehicles.',
