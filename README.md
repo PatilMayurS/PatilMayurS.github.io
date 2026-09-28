@@ -42,6 +42,10 @@ All copy lives in two files. The components only render what's in them.
 
 The content comes from the résumé (`main2.tex`). Some things are left out on purpose: the street address, the phone number, and anything commented out in the LaTeX source.
 
+**Experience bullets: detailed vs. concise.** Each role has two versions of its bullets, both in `src/content/experienceBullets.ts`:
+- **Preview both locally.** Run `./dev.sh`. A "Dev · Experience bullets" switch appears in the bottom-right corner. It exists only in the dev server and never in the published site.
+- **Choose what the public sees.** In `src/content/site.ts`, set `experienceBullets` to `'detailed'` or `'concise'`, then commit and push. The build includes only that version. The other one isn't in the published files at all, though it is still in this public repository's source code.
+
 **Adding links** (GitHub, Google Scholar, a paper DOI, etc.): put the URL in `site.ts`, then render it in `Contact.tsx` / `Footer.tsx`. Add it to `sameAs` in `vite.config.ts` too, so it lands in the structured data.
 
 **Adding a résumé PDF**: drop a copy into `public/` and link to it. Remove the home address and phone number first. The current `.tex` source includes both.

@@ -92,6 +92,8 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), seo()],
   define: {
     __BUILD_YEAR__: JSON.stringify(new Date().getFullYear()),
+    // Compile-time constant so the unpublished bullet version is dropped from the build.
+    __EXPERIENCE_BULLETS__: JSON.stringify(site.experienceBullets),
   },
   build: {
     rollupOptions: {

@@ -18,17 +18,16 @@ export type Role = {
   end: string
   summary: string
   highlights?: Stat[]
-  points: string[]
   tags: string[]
 }
 
 export type TeachingRole = {
+  id: string
   institution: string
   department: string
   start: string
   end: string
   courses: string[]
-  points: string[]
 }
 
 export type ProjectArt = 'twin' | 'colregs' | 'stpa' | 'dubins' | 'signal' | 'wave'
@@ -118,13 +117,6 @@ export const experience: Role[] = [
     summary:
       'Research in autonomous marine, aerial, and ground systems, with a focus on perception, sensor fusion, localization, planning, and decision-making.',
     highlights: [{ value: '>95%', label: 'Detection accuracy across standard, flashing, and directional traffic signals' }],
-    points: [
-      'Developing large-scale, high-fidelity digital twin and simulation frameworks for verification, validation, and performance assessment of autonomous marine systems in complex operational environments.',
-      'Established a System-Theoretic Process Analysis (STPA)-based framework to identify, quantify, and prioritize safety-critical factors in transitions between manual and autonomous vessel operations.',
-      'Formulating mathematical models and quantitative risk assessment methodologies to evaluate hazards, safety risks, and human-autonomy transitions in maritime systems.',
-      'Designing curvature-constrained path planning, routing, and moving-target tracking algorithms for autonomous marine and aerial vehicles in dynamic, obstacle-rich, and constrained environments.',
-      'Extended the YOLO object detection framework to develop traffic-signal state recognition for autonomous ground vehicles, achieving over 95% detection accuracy across standard, flashing, and directional signal configurations.',
-    ],
     tags: ['Digital twins', 'Verification & validation', 'STPA', 'Risk assessment', 'Motion planning', 'YOLO'],
   },
   {
@@ -141,14 +133,6 @@ export const experience: Role[] = [
       { value: '>90%', label: 'Less control-logic development and code-generation effort' },
       { value: '4', label: 'Engineers mentored and trained' },
     ],
-    points: [
-      'Developed dynamic models and control strategies for thermal systems, including liquid heating and cooling plants, and implemented the associated control logic.',
-      'Designed and commissioned control systems for air handling, gas waste, and exhaust infrastructure to maintain semiconductor cleanroom environmental requirements.',
-      'Developed standardized control logic libraries and operator GUI applications for gas monitoring systems deployed across Intel manufacturing facilities.',
-      'Established installation, decommissioning, and troubleshooting procedures that enabled safe tool integration and removal without disrupting critical manufacturing operations.',
-      'Automated engineering workflows through Python and SQL-based tools, reducing control-logic development and code-generation effort by over 90%.',
-      'Mentored and trained four engineers on controls engineering practices, safety protocols, and quality standards, improving team productivity and technical readiness.',
-    ],
     tags: ['Python', 'SQL', 'Control logic', 'Thermal systems', 'Operator GUIs', 'Life-safety systems'],
   },
   {
@@ -162,38 +146,26 @@ export const experience: Role[] = [
     end: 'Jul 2020',
     summary:
       'Research in robust and optimal control, system identification, and machine learning for nano-precision motion control systems, under the supervision of Dr. Juan Ren.',
-    points: [
-      'Developed an augmented model predictive control (MPC) framework for high-speed, high-precision trajectory tracking of piezoelectric nanopositioning actuators.',
-      'Designed machine learning-based nonlinear system identification methods and investigated clustering techniques (K-means, GMM) for optimal excitation signal generation and improved model accuracy.',
-      'Evaluated the integration of machine learning models within advanced control architectures and implemented iterative learning control strategies to enhance tracking performance.',
-    ],
     tags: ['Model predictive control', 'System identification', 'Machine learning', 'K-means', 'GMM', 'Iterative learning control'],
   },
 ]
 
 export const teaching: TeachingRole[] = [
   {
+    id: 'tamu-teaching',
     institution: 'Texas A&M University',
     department: 'Dept. of Mechanical Engineering',
     start: 'Aug 2023',
     end: 'Dec 2023',
     courses: ['MEEN 364 — Dynamic Systems and Control'],
-    points: [
-      'Conducted laboratory sessions, guiding students in experimental design, control systems concepts, and hands-on implementation.',
-      'Provided technical support for programming and laboratory activities, evaluated student performance, and delivered feedback.',
-    ],
   },
   {
+    id: 'isu-teaching',
     institution: 'Iowa State University',
     department: 'Dept. of Mechanical Engineering',
     start: 'Aug 2018',
     end: 'May 2020',
     courses: ['ME 436 — Heat and Mass Transfer', 'ME 421 — Dynamics and Control'],
-    points: [
-      'Delivered laboratory instruction for ME 436 to classes of 60 students, guiding experimental procedures, data acquisition, analysis, and interpretation.',
-      'Supported ME 421 through discussions and individualized assistance; collaborated with faculty to develop laboratory exercises, instructional materials, and assessment methods.',
-      'Supervised labs, ran report-writing and feedback sessions, and evaluated students’ lab performance.',
-    ],
   },
 ]
 
@@ -305,15 +277,7 @@ export const skills: { lead: SkillGroup; groups: SkillGroup[] } = {
     {
       name: 'Autonomy & planning',
       blurb: 'Getting from here to there, within real turning limits.',
-      items: [
-        'Autonomous systems',
-        'Motion planning',
-        'Curvature-constrained navigation',
-        'A* / Hybrid A*',
-        'Dubins path planning',
-        'Sampling-based planning (RRT*, BIT*)',
-        'Robotics',
-      ],
+      items: ['Curvature-constrained navigation', 'Sampling-based planning', 'Graph-based planning', 'Heuristic planning'],
     },
     {
       name: 'Simulation & safety',
@@ -330,7 +294,6 @@ export const skills: { lead: SkillGroup; groups: SkillGroup[] } = {
       name: 'Control, estimation & optimization',
       blurb: 'The mathematics underneath.',
       items: [
-        'Control systems',
         'Optimal control',
         'Model predictive control',
         'Iterative learning control',
@@ -341,14 +304,21 @@ export const skills: { lead: SkillGroup; groups: SkillGroup[] } = {
       ],
     },
     {
-      name: 'Machine learning & perception',
-      blurb: 'Seeing and modeling the world.',
-      items: ['YOLO object detection', 'LSTM neural networks', 'K-means', 'Gaussian mixture models', 'Perception', 'Sensor fusion', 'Localization'],
+      name: 'Machine learning',
+      blurb: 'Learning models from data.',
+      items: [
+        'LSTM neural networks',
+        'Graph neural networks',
+        'Diffusion models',
+        'Reinforcement learning',
+        'K-means',
+        'Gaussian mixture models',
+      ],
     },
     {
       name: 'Software & tools',
       blurb: 'Where the work gets built.',
-      items: ['MATLAB', 'Simulink', 'ROS2', 'Unity', 'Gurobi', 'ANSYS', 'Automation Studio', 'LaTeX', 'MS Office'],
+      items: ['ROS2', 'Unity', 'Gurobi', 'MATLAB', 'Simulink', 'ANSYS', 'Automation Studio'],
     },
   ],
 }

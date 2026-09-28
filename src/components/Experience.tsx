@@ -1,4 +1,5 @@
 import { experience, teaching, type Role } from '../content/profile'
+import { bulletsFor, useBulletStyle } from '../hooks/bullets'
 import { useScrollProgress } from '../hooks/motion'
 import { Chips, Container, Reveal, Section, SectionHeader } from './ui'
 
@@ -6,6 +7,7 @@ import { Chips, Container, Reveal, Section, SectionHeader } from './ui'
 const railProgress = (rect: DOMRect, vh: number) => (vh * 0.55 - rect.top) / rect.height
 
 function RoleItem({ role }: { role: Role }) {
+  const points = bulletsFor(role.id, useBulletStyle())
   const where = [role.org, role.institution].filter(Boolean).join(', ')
   return (
     <li className="role relative pb-20 pl-8 last:pb-2 sm:pb-24 sm:pl-12">
@@ -51,7 +53,7 @@ function RoleItem({ role }: { role: Role }) {
         )}
 
         <Reveal as="ul" delay={160} className="mt-9 max-w-[64ch] space-y-3 border-t border-line pt-8" aria-label="Key contributions">
-          {role.points.map((p) => (
+          {points.map((p) => (
             <li key={p} className="bullet text-[1rem] leading-relaxed text-muted text-pretty">
               {p}
             </li>
@@ -68,6 +70,7 @@ function RoleItem({ role }: { role: Role }) {
 
 export default function Experience() {
   const railRef = useScrollProgress<HTMLDivElement>(railProgress, 1)
+  const bulletStyle = useBulletStyle()
 
   return (
     <Section id="experience" theme="light" tone="mist" className="py-section">
@@ -115,7 +118,7 @@ export default function Experience() {
                   ))}
                 </ul>
                 <ul className="mt-4 space-y-2.5">
-                  {t.points.map((p) => (
+                  {bulletsFor(t.id, bulletStyle).map((p) => (
                     <li key={p} className="bullet text-[0.9375rem] leading-relaxed text-muted text-pretty">
                       {p}
                     </li>

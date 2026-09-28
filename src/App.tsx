@@ -1,4 +1,5 @@
 import About from './components/About'
+import DevBulletSwitch from './components/DevBulletSwitch'
 import Contact from './components/Contact'
 import Education from './components/Education'
 import Experience from './components/Experience'
@@ -24,6 +25,8 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      {/* Local preview only — stripped from production builds. */}
+      {import.meta.env.DEV && <DevBulletSwitch />}
     </>
   )
 }

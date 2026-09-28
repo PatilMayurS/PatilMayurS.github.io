@@ -18,6 +18,12 @@ export const site = {
     url: 'https://www.linkedin.com/in/mayur-s-patil/',
     handle: 'mayur-s-patil',
   },
+  /**
+   * Which experience bullets the PUBLIC site shows: 'detailed' or 'concise'.
+   * Only this version is included in the published build. Preview both locally
+   * with the switch that appears in `./dev.sh` (bottom-right corner).
+   */
+  experienceBullets: 'concise' as 'detailed' | 'concise',
   seo: {
     title: 'Mayur Shivaji Patil — Autonomous Systems Research, Texas A&M University',
     description:
